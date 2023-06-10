@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "Lobster";
+  src: url("./../../assets/fonts/Lobster-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.menu-button {
+  color: "white";
+}
