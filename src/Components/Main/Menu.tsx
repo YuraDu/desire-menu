@@ -1,13 +1,12 @@
 import React from "react";
-import { Button } from "@mui/material";
-import "./styles.css";
+import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const Menu: React.FC = () => {
-  const buttonStyles = { color: "white" };
+  const buttonStyles = { color: "white", fontFamily: "Lobster" };
 
   return (
-    <div
+    <Grid
       style={{
         fontFamily: "Lobster",
         display: "flex",
@@ -26,16 +25,16 @@ const Menu: React.FC = () => {
       <Link to="/salads">
         <Button style={buttonStyles}>Салаты</Button>
       </Link>
-      <Link to="/">
+      <Link to="/pizza">
         <Button style={buttonStyles}>Пицца</Button>
       </Link>
-      <Link to="/">
+      <Link to="/pasta">
         <Button style={buttonStyles}>Паста</Button>
       </Link>
-      <Link to="/">
+      <Link to="/drinks">
         <Button style={buttonStyles}>Напитки</Button>
       </Link>
-    </div>
+    </Grid>
   );
 };
 
