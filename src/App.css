@@ -25,6 +25,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Alumni";
+  src: url("./assets/fonts/AlumniSans-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

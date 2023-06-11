@@ -6,7 +6,45 @@ import {
   Typography,
   Button,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import carapccio from "../../assets/images/appetizers/carpaccio.jpg";
+
+const useStyles = makeStyles({
+  sectionTitle: {
+    fontFamily: "Lobster",
+    marginBottom: 10,
+  },
+  card: {
+    marginBottom: 10,
+  },
+  cardMedia: {
+    height: 140,
+  },
+  expandedDescription: {
+    fontFamily: "Alumni",
+    fontSize: 16,
+  },
+  itemName: {
+    fontFamily: "Alumni",
+    fontSize: 20,
+  },
+  description: {
+    fontFamily: "Alumni",
+    maxHeight: 40,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    display: "-webkit-box",
+    WebkitBoxOrient: "vertical",
+    WebkitLineClamp: 2,
+    fontSize: 16,
+  },
+  priceContainer: {
+    fontFamily: "Alumni",
+    display: "flex",
+    justifyContent: "center",
+    gap: 2,
+  },
+});
 
 interface MenuItem {
   name: string;
@@ -20,24 +58,28 @@ interface MenuSectionProps {
 }
 
 const MenuSection: React.FC<MenuSectionProps> = ({ sectionName, items }) => {
+  const classes = useStyles();
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
 
   const handleExpand = (itemName: string) => {
-    setExpandedItem(itemName === expandedItem ? null : itemName);
+    setExpandedItem(prevExpandedItem =>
+      prevExpandedItem === itemName ? null : itemName
+    );
   };
 
   return (
     <div>
-      <Typography variant="h5" sx={{ fontFamily: "Lobster", marginBottom: 4 }}>
+      <Typography variant="h5" className={classes.sectionTitle}>
         {sectionName}
       </Typography>
       {items.map((item, index) => (
-        <Card key={index} sx={{ marginBottom: "10px" }}>
+        <Card key={index} className={classes.card}>
           <CardMedia
             component="img"
             height="140"
             image={carapccio}
             alt={item.name}
+            className={classes.cardMedia}
           />
           <CardContent>
             <Typography variant="h6" component="div">
@@ -45,16 +87,17 @@ const MenuSection: React.FC<MenuSectionProps> = ({ sectionName, items }) => {
             </Typography>
             <hr />
             <Typography
-              sx={{
-                maxHeight: expandedItem === item.name ? "none" : 40,
-                overflow: "hidden",
-              }}
+              className={
+                expandedItem === item.name
+                  ? classes.expandedDescription
+                  : classes.description
+              }
               variant="body2"
               color="text.secondary"
             >
               {item.description}
             </Typography>
-            {expandedItem !== item.name && (
+            {expandedItem !== item.name ? (
               <Button
                 onClick={() => handleExpand(item.name)}
                 variant="text"
@@ -62,8 +105,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({ sectionName, items }) => {
               >
                 БОЛЬШЕ
               </Button>
-            )}
-            {expandedItem === item.name && (
+            ) : (
               <Button
                 onClick={() => handleExpand(item.name)}
                 variant="text"
@@ -74,7 +116,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({ sectionName, items }) => {
             )}
             <hr />
             <Typography
-              sx={{ display: "flex", justifyContent: "center", gap: "2px" }}
+              className={classes.priceContainer}
               variant="body2"
               color="text.secondary"
             >
