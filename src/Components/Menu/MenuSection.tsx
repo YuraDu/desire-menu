@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, RefObject } from "react";
 import {
   Card,
   CardContent,
@@ -37,6 +37,7 @@ const useStyles = makeStyles({
     WebkitBoxOrient: "vertical",
     WebkitLineClamp: 2,
     fontSize: 16,
+    paddingBottom: "10px",
   },
   priceContainer: {
     fontFamily: "Alumni",
@@ -57,6 +58,8 @@ interface MenuItem {
 interface MenuSectionProps {
   sectionName: string;
   items: MenuItem[];
+  descriptionHeight: number | null;
+  descriptionRef: RefObject<HTMLDivElement>;
   setLanguage: (selectedLanguage: string) => void;
 }
 
@@ -67,24 +70,17 @@ const MenuSection: React.FC<MenuSectionProps> = ({
 }) => {
   const classes = useStyles();
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
-  const descriptionRef = useRef<HTMLDivElement>(null);
-  console.log(
-    "🚀 ~ file: MenuSection.tsx:71 ~ descriptionRef:",
-    descriptionRef
-  );
-  const [descriptionHeight, setDescriptionHeight] = useState<number | null>(
-    null
-  );
-  console.log(
-    "🚀 ~ file: MenuSection.tsx:74 ~ descriptionHeight:",
-    descriptionHeight
-  );
+  // const descriptionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (descriptionRef.current) {
-      setDescriptionHeight(descriptionRef.current.clientHeight);
-    }
-  }, [items]);
+  // const [descriptionHeight, setDescriptionHeight] = useState<number | null>(
+  //   null
+  // );
+
+  // useEffect(() => {
+  //   if (descriptionRef.current) {
+  //     setDescriptionHeight(descriptionRef.current.clientHeight);
+  //   }
+  // }, [items]);
 
   const handleExpand = (itemName: string) => {
     setExpandedItem(prevExpandedItem =>
@@ -110,9 +106,11 @@ const MenuSection: React.FC<MenuSectionProps> = ({
             <Typography variant="h6" component="div">
               {item.name}
             </Typography>
-            <hr />
-            <div ref={descriptionRef}>
+            {/* <hr /> */}
+            {/* <div ref={descriptionRef}> */}
+            <div>
               <Typography
+                sx={{ padding: "10px, 0" }}
                 className={
                   expandedItem === item.name
                     ? classes.expandedDescription
@@ -124,7 +122,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({
                 {item.description}
               </Typography>
             </div>
-            {descriptionHeight && descriptionHeight > 30 ? (
+            {item.description && item.description.length > 75 ? (
               <>
                 {expandedItem !== item.name ? (
                   <Button
@@ -143,7 +141,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({
                     СВЕРНУТЬ
                   </Button>
                 )}
-                <hr />
+                {/* <hr /> */}
               </>
             ) : (
               ""
