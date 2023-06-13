@@ -2,7 +2,9 @@ import React from "react";
 import { ReduxState } from "../Store/store";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { setCurrentLanguage } from "../Store/reduser/homePageSlice";
+import { setCurrentLanguage } from "../Store/reducer/homePageSlice";
+
+import "./styles.css";
 
 interface LanguageButtonProps {
   language: string;
@@ -14,11 +16,6 @@ const LanguageButton: React.FC<LanguageButtonProps> = ({ language }) => {
   );
 
   const dispatch = useDispatch();
-
-  console.log(
-    "🚀 ~ file: LanguageButton.tsx:14 ~ currentLanguage:",
-    currentLanguage === language
-  );
 
   return (
     <div

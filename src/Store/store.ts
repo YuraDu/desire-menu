@@ -1,5 +1,5 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import homePageSlice, { IHomePage } from "./reduser/homePageSlice";
+import homePageSlice, { IHomePage } from "./reducer/homePageSlice";
 
 export interface ReduxState {
   homePage: IHomePage;

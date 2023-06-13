@@ -10,11 +10,9 @@ import { makeStyles } from "@mui/styles";
 import carapccio from "../../assets/images/appetizers/carpaccio.jpg";
 import LanguageButton from "../../UI/LanguageButton";
 
+import "./styles.css";
+
 const useStyles = makeStyles({
-  sectionTitle: {
-    fontFamily: "Lobster",
-    marginBottom: 10,
-  },
   card: {
     marginBottom: 10,
   },
@@ -73,9 +71,7 @@ const MenuSection: React.FC<MenuSectionProps> = ({ sectionName, items }) => {
 
   return (
     <div>
-      <Typography variant="h5" className={classes.sectionTitle}>
-        {sectionName}
-      </Typography>
+      <div className="section-title">{sectionName}</div>
       {items.map((item, index) => (
         <Card key={index} className={classes.card}>
           <CardMedia
