@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import carapccio from "../../assets/images/appetizers/carpaccio.jpg";
+import LanguageButton from "../../UI/LanguageButton";
 
 const useStyles = makeStyles({
   sectionTitle: {
@@ -37,7 +38,7 @@ const useStyles = makeStyles({
     WebkitBoxOrient: "vertical",
     WebkitLineClamp: 2,
     fontSize: 16,
-    paddingBottom: "10px",
+    // paddingBottom: "10px",
   },
   priceContainer: {
     fontFamily: "Alumni",
@@ -58,29 +59,11 @@ interface MenuItem {
 interface MenuSectionProps {
   sectionName: string;
   items: MenuItem[];
-  descriptionHeight: number | null;
-  descriptionRef: RefObject<HTMLDivElement>;
-  setLanguage: (selectedLanguage: string) => void;
 }
 
-const MenuSection: React.FC<MenuSectionProps> = ({
-  sectionName,
-  items,
-  setLanguage,
-}) => {
+const MenuSection: React.FC<MenuSectionProps> = ({ sectionName, items }) => {
   const classes = useStyles();
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
-  // const descriptionRef = useRef<HTMLDivElement>(null);
-
-  // const [descriptionHeight, setDescriptionHeight] = useState<number | null>(
-  //   null
-  // );
-
-  // useEffect(() => {
-  //   if (descriptionRef.current) {
-  //     setDescriptionHeight(descriptionRef.current.clientHeight);
-  //   }
-  // }, [items]);
 
   const handleExpand = (itemName: string) => {
     setExpandedItem(prevExpandedItem =>
@@ -106,8 +89,6 @@ const MenuSection: React.FC<MenuSectionProps> = ({
             <Typography variant="h6" component="div">
               {item.name}
             </Typography>
-            {/* <hr /> */}
-            {/* <div ref={descriptionRef}> */}
             <div>
               <Typography
                 sx={{ padding: "10px, 0" }}
@@ -141,7 +122,6 @@ const MenuSection: React.FC<MenuSectionProps> = ({
                     СВЕРНУТЬ
                   </Button>
                 )}
-                {/* <hr /> */}
               </>
             ) : (
               ""
@@ -151,9 +131,9 @@ const MenuSection: React.FC<MenuSectionProps> = ({
               <span>&#8362;</span>
               <span>{item.price}</span>
               <div className="languages">
-                <div onClick={() => setLanguage("he")}>HE</div>
-                <div onClick={() => setLanguage("en")}>EN</div>
-                <div onClick={() => setLanguage("ru")}>RU</div>
+                <LanguageButton language={"he"} />
+                <LanguageButton language={"en"} />
+                <LanguageButton language={"ru"} />
               </div>
             </div>
           </CardContent>

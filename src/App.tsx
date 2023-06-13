@@ -9,15 +9,8 @@ import Events from "./Components/Main/Events.tsx";
 import { Route, Routes } from "react-router-dom";
 import { menuRussian } from "./Consts/interaces.ts";
 import MenuSection from "./Components/Menu/MenuSection.tsx";
-import { useState } from "react";
 
 function App() {
-  const [language, setLanguage] = useState("ru");
-
-  const handleChangeLanguage = (language: string) => {
-    setLanguage(language);
-  };
-
   const containerStyles = {
     padding: "16px",
     display: "flex",
@@ -43,7 +36,6 @@ function App() {
               <MenuSection
                 sectionName="Аперитивы и Закуски"
                 items={menuRussian.appetizersAndSnacks}
-                setLanguage={handleChangeLanguage}
               />
             }
           />
@@ -53,7 +45,6 @@ function App() {
               <MenuSection
                 sectionName="Горячие Закуски"
                 items={menuRussian.hotSnacks}
-                setLanguage={handleChangeLanguage}
               />
             }
           />
@@ -63,38 +54,25 @@ function App() {
               <MenuSection
                 sectionName="Основные Блюда"
                 items={menuRussian.mainCourses}
-                setLanguage={handleChangeLanguage}
               />
             }
           />
           <Route
             path="/salads"
             element={
-              <MenuSection
-                setLanguage={handleChangeLanguage}
-                sectionName="Салаты"
-                items={menuRussian.salads}
-              />
+              <MenuSection sectionName="Салаты" items={menuRussian.salads} />
             }
           />
           <Route
             path="/pasta"
             element={
-              <MenuSection
-                setLanguage={handleChangeLanguage}
-                sectionName="Паста"
-                items={menuRussian.pasta}
-              />
+              <MenuSection sectionName="Паста" items={menuRussian.pasta} />
             }
           />
           <Route
             path="/pizza"
             element={
-              <MenuSection
-                setLanguage={handleChangeLanguage}
-                sectionName="Пицца"
-                items={menuRussian.pizza}
-              />
+              <MenuSection sectionName="Пицца" items={menuRussian.pizza} />
             }
           />
         </Routes>
