@@ -68,8 +68,16 @@ const MenuSection: React.FC<MenuSectionProps> = ({
   const classes = useStyles();
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
+  console.log(
+    "🚀 ~ file: MenuSection.tsx:71 ~ descriptionRef:",
+    descriptionRef
+  );
   const [descriptionHeight, setDescriptionHeight] = useState<number | null>(
     null
+  );
+  console.log(
+    "🚀 ~ file: MenuSection.tsx:74 ~ descriptionHeight:",
+    descriptionHeight
   );
 
   useEffect(() => {
