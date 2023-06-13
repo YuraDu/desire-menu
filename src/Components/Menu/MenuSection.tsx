@@ -43,6 +43,8 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "center",
     gap: 2,
+
+    position: "relative",
   },
 });
 
@@ -55,9 +57,14 @@ interface MenuItem {
 interface MenuSectionProps {
   sectionName: string;
   items: MenuItem[];
+  setLanguage: (selectedLanguage: string) => void;
 }
 
-const MenuSection: React.FC<MenuSectionProps> = ({ sectionName, items }) => {
+const MenuSection: React.FC<MenuSectionProps> = ({
+  sectionName,
+  items,
+  setLanguage,
+}) => {
   const classes = useStyles();
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
@@ -133,15 +140,16 @@ const MenuSection: React.FC<MenuSectionProps> = ({ sectionName, items }) => {
             ) : (
               ""
             )}
-            <Typography
-              className={classes.priceContainer}
-              variant="body2"
-              color="text.secondary"
-            >
+            <div className={classes.priceContainer}>
               <span>цена:</span>
               <span>&#8362;</span>
               <span>{item.price}</span>
-            </Typography>
+              <div className="languages">
+                <div onClick={() => setLanguage("he")}>HE</div>
+                <div onClick={() => setLanguage("en")}>EN</div>
+                <div onClick={() => setLanguage("ru")}>RU</div>
+              </div>
+            </div>
           </CardContent>
         </Card>
       ))}

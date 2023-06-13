@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import Container from "@mui/material/Container";
 import "./App.css";
 
@@ -11,6 +12,9 @@ import { menuRussian } from "./Consts/interaces.ts";
 import MenuSection from "./Components/Menu/MenuSection.tsx";
 
 function App() {
+  const [language, setLanguage] = useState("ru");
+  console.log("🚀 ~ file: App.tsx:16 ~ App ~ language:", language);
+
   const containerStyles = {
     padding: "16px",
     display: "flex",
@@ -18,6 +22,12 @@ function App() {
     justifyContent: "flexStart",
     height: "100vh",
     gap: "10px",
+    position: "relative",
+  };
+
+  const handleLanguageChange = (selectedLanguage: string) => {
+    setLanguage(selectedLanguage);
+    // Perform any other necessary logic related to language change
   };
 
   return (
@@ -36,45 +46,11 @@ function App() {
               <MenuSection
                 sectionName="Аперитивы и Закуски"
                 items={menuRussian.appetizersAndSnacks}
+                setLanguage={handleLanguageChange}
               />
             }
           />
-          <Route
-            path="/hotSnacks"
-            element={
-              <MenuSection
-                sectionName="Горячие Закуски"
-                items={menuRussian.hotSnacks}
-              />
-            }
-          />
-          <Route
-            path="/mainCourses"
-            element={
-              <MenuSection
-                sectionName="Основные Блюда"
-                items={menuRussian.hotSnacks}
-              />
-            }
-          />
-          <Route
-            path="/salads"
-            element={
-              <MenuSection sectionName="Салаты" items={menuRussian.salads} />
-            }
-          />
-          <Route
-            path="/pasta"
-            element={
-              <MenuSection sectionName="Паста" items={menuRussian.pasta} />
-            }
-          />
-          <Route
-            path="/pizza"
-            element={
-              <MenuSection sectionName="Пицца" items={menuRussian.pizza} />
-            }
-          />
+          {/* Rest of the routes */}
         </Routes>
       </Container>
     </>

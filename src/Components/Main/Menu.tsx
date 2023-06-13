@@ -9,25 +9,46 @@ const Menu: React.FC = () => {
   return (
     <Grid sx={linksContainer}>
       <Link to="/appetizers">
-        <div className="buttonStyles menu-button">Аперитивы и Закуски</div>
+        <div className="buttonStyles menu-button">
+          <span>Аперитивы и Закуски</span>
+          <div className="menu-button--filter"></div>
+        </div>
       </Link>
       <Link to="/hotSnacks">
-        <div className="buttonStyles menu-button">Горячие Закуски</div>
+        <div className="buttonStyles menu-button">
+          <span>Горячие Закуски</span>
+          <div className="menu-button--filter"></div>
+        </div>
       </Link>
       <Link to="/mainCourses">
-        <div className="buttonStyles menu-button">Основные Блюда</div>
+        <div className="buttonStyles menu-button">
+          <span>Основные Блюда</span>
+          <div className="menu-button--filter"></div>
+        </div>
       </Link>
       <Link to="/salads">
-        <div className="buttonStyles menu-button">Салаты</div>
+        <div className="buttonStyles menu-button">
+          <span>Салаты</span>
+          <div className="menu-button--filter"></div>
+        </div>
       </Link>
       <Link to="/pizza">
-        <div className="buttonStyles menu-button">Пицца</div>
+        <div className="buttonStyles menu-button">
+          <span>Пицца</span>
+          <div className="menu-button--filter"></div>
+        </div>
       </Link>
       <Link to="/pasta">
-        <div className="buttonStyles menu-button">Паста</div>
+        <div className="buttonStyles menu-button">
+          <span>Паста</span>
+          <div className="menu-button--filter"></div>
+        </div>
       </Link>
       <Link to="/drinks">
-        <div className="buttonStyles menu-button">Напитки</div>
+        <div className="buttonStyles menu-button">
+          <span>Напитки</span>
+          <div className="menu-button--filter"></div>
+        </div>
       </Link>
     </Grid>
   );
