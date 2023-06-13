@@ -10,6 +10,15 @@ interface Menu {
   salads: MenuItem[];
 }
 
+export interface MenuSectionLink {
+  path: string;
+  title: {
+    ru: string;
+    en: string;
+    he: string;
+  };
+}
+
 export interface MenuItem {
   name: string;
   price: string;
@@ -17,7 +26,7 @@ export interface MenuItem {
 }
 
 const menuRussian: Menu = {
-  language: "Russian",
+  language: "ru",
   appetizersAndSnacks: russianMenuData.appetizersAndSnacks,
   mainCourses: russianMenuData.mainCourses,
   hotSnacks: russianMenuData.hotSnacks,

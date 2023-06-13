@@ -1,55 +1,32 @@
 import React from "react";
 import { Button, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
+import { menuTitles } from "./../../Consts/consts";
+
 import "./styles.css";
+import { MenuSectionLink } from "../../Consts/interaces";
+import { useSelector } from "react-redux";
+import { ReduxState } from "../../Store/store";
 
 const linksContainer = { display: "flex", flexDirection: "column", gap: 4 };
 
 const Menu: React.FC = () => {
+  const currentLanguage = useSelector(
+    (state: ReduxState) => state.homePage.currentLanguage
+  );
+
   return (
     <Grid sx={linksContainer}>
-      <Link to="/appetizers">
-        <div className="buttonStyles menu-button">
-          <span>Аперитивы и Закуски</span>
-          <div className="menu-button--filter"></div>
-        </div>
-      </Link>
-      <Link to="/hotSnacks">
-        <div className="buttonStyles menu-button">
-          <span>Горячие Закуски</span>
-          <div className="menu-button--filter"></div>
-        </div>
-      </Link>
-      <Link to="/mainCourses">
-        <div className="buttonStyles menu-button">
-          <span>Основные Блюда</span>
-          <div className="menu-button--filter"></div>
-        </div>
-      </Link>
-      <Link to="/salads">
-        <div className="buttonStyles menu-button">
-          <span>Салаты</span>
-          <div className="menu-button--filter"></div>
-        </div>
-      </Link>
-      <Link to="/pizza">
-        <div className="buttonStyles menu-button">
-          <span>Пицца</span>
-          <div className="menu-button--filter"></div>
-        </div>
-      </Link>
-      <Link to="/pasta">
-        <div className="buttonStyles menu-button">
-          <span>Паста</span>
-          <div className="menu-button--filter"></div>
-        </div>
-      </Link>
-      <Link to="/drinks">
-        <div className="buttonStyles menu-button">
-          <span>Напитки</span>
-          <div className="menu-button--filter"></div>
-        </div>
-      </Link>
+      {menuTitles.map((title: MenuSectionLink) => (
+        <Link to={title.path}>
+          <div className="menu-button">
+            <span>
+              {title.title[currentLanguage as keyof typeof title.title]}
+            </span>
+            <div className="menu-button--filter"></div>
+          </div>
+        </Link>
+      ))}
     </Grid>
   );
 };
