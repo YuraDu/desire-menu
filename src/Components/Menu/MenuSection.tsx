@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   Card,
   CardContent,
@@ -60,6 +60,16 @@ interface MenuSectionProps {
 const MenuSection: React.FC<MenuSectionProps> = ({ sectionName, items }) => {
   const classes = useStyles();
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
+  const descriptionRef = useRef<HTMLDivElement>(null);
+  const [descriptionHeight, setDescriptionHeight] = useState<number | null>(
+    null
+  );
+
+  useEffect(() => {
+    if (descriptionRef.current) {
+      setDescriptionHeight(descriptionRef.current.clientHeight);
+    }
+  }, [items]);
 
   const handleExpand = (itemName: string) => {
     setExpandedItem(prevExpandedItem =>
@@ -86,35 +96,43 @@ const MenuSection: React.FC<MenuSectionProps> = ({ sectionName, items }) => {
               {item.name}
             </Typography>
             <hr />
-            <Typography
-              className={
-                expandedItem === item.name
-                  ? classes.expandedDescription
-                  : classes.description
-              }
-              variant="body2"
-              color="text.secondary"
-            >
-              {item.description}
-            </Typography>
-            {expandedItem !== item.name ? (
-              <Button
-                onClick={() => handleExpand(item.name)}
-                variant="text"
-                size="small"
+            <div ref={descriptionRef}>
+              <Typography
+                className={
+                  expandedItem === item.name
+                    ? classes.expandedDescription
+                    : classes.description
+                }
+                variant="body2"
+                color="text.secondary"
               >
-                БОЛЬШЕ
-              </Button>
+                {item.description}
+              </Typography>
+            </div>
+            {descriptionHeight && descriptionHeight > 30 ? (
+              <>
+                {expandedItem !== item.name ? (
+                  <Button
+                    onClick={() => handleExpand(item.name)}
+                    variant="text"
+                    size="small"
+                  >
+                    БОЛЬШЕ
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => handleExpand(item.name)}
+                    variant="text"
+                    size="small"
+                  >
+                    СВЕРНУТЬ
+                  </Button>
+                )}
+                <hr />
+              </>
             ) : (
-              <Button
-                onClick={() => handleExpand(item.name)}
-                variant="text"
-                size="small"
-              >
-                СВЕРНУТЬ
-              </Button>
+              ""
             )}
-            <hr />
             <Typography
               className={classes.priceContainer}
               variant="body2"

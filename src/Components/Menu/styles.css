@@ -1,0 +1,13 @@
+.buttonStyles {
+  border: 1px solid white;
+  width: 100%;
+  color: white;
+  font-family: Lobster;
+}
+
+.linksContainer {
+  font-family: Lobster;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

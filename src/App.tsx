@@ -26,8 +26,10 @@ function App() {
         <Header />
         <Nav />
         <Routes>
-          <Route path="/" element={<Menu />} />
+          <Route path="/menu" element={<Menu />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/" element={<Events />} />
+
           <Route
             path="/appetizers"
             element={

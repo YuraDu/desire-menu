@@ -11,7 +11,7 @@ const Nav: React.FC = () => {
         backgroundColor: "black",
       }}
     >
-      <Link to={"/"}>
+      <Link to={"/menu"}>
         <Button>Menu</Button>
       </Link>
       <Link to={"/events"}>
