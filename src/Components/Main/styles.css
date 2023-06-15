@@ -14,6 +14,12 @@
   overflow: hidden;
 }
 
+.heb {
+  font-family: Karantina !important;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
 .menu-button--filter {
   position: absolute;
   background-color: white;

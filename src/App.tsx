@@ -9,6 +9,7 @@ import Events from "./Components/Main/Events.tsx";
 import { Route, Routes } from "react-router-dom";
 import { menuRussian } from "./Consts/interaces.ts";
 import MenuSection from "./Components/Menu/MenuSection.tsx";
+import LanguageButton from "./UI/LanguageButton.tsx";
 
 function App() {
   const containerStyles = {
@@ -21,7 +22,21 @@ function App() {
   };
 
   return (
-    <>
+    <div style={{ position: "relative" }}>
+      <div
+        style={{
+          position: "absolute",
+          top: "20px",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          display: "flex",
+          gap: "4px",
+        }}
+      >
+        <LanguageButton language={"he"} />
+        <LanguageButton language={"en"} />
+        <LanguageButton language={"ru"} />
+      </div>
       <Container maxWidth="xs" sx={containerStyles}>
         <Header />
         <Nav />
@@ -77,7 +92,7 @@ function App() {
           />
         </Routes>
       </Container>
-    </>
+    </div>
   );
 }
 

@@ -15,11 +15,15 @@ const Menu: React.FC = () => {
     (state: ReduxState) => state.homePage.currentLanguage
   );
 
+  const language = useSelector(
+    (state: ReduxState) => state.homePage.currentLanguage
+  );
+
   return (
     <Grid sx={linksContainer}>
       {menuTitles.map((title: MenuSectionLink) => (
         <Link to={title.path}>
-          <div className="menu-button">
+          <div className={`menu-button ${language === "he" ? "heb" : ""}`}>
             <span>
               {title.title[currentLanguage as keyof typeof title.title]}
             </span>
